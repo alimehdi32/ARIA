@@ -11,7 +11,8 @@ class FailureClassifier:
 
 
 class RetryEngine:
-    def _init_(self):
+    def __init__(self):
+        # ✅ THIS LINE IS CRITICAL
         self.classifier = FailureClassifier()
 
     def handle(self, agent, data, error):
