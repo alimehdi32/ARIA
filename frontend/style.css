@@ -1,0 +1,135 @@
+/* ARIA Dashboard Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #38bdf8;
+}
+
+header h1 {
+    margin: 0;
+    color: #38bdf8;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 10px 0 0;
+    color: #94a3b8;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #f1f5f9;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 10px;
+}
+
+#logs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #3b82f6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.log:hover {
+    transform: translateY(-2px);
+}
+
+.log.START { border-left-color: #3b82f6; }
+.log.SUCCESS { border-left-color: #22c55e; }
+.log.FAILURE { border-left-color: #ef4444; }
+.log.RECOVERY_SUCCESS { border-left-color: #eab308; }
+.log.VERIFICATION { border-left-color: #a855f7; }
+
+.log strong {
+    color: #f1f5f9;
+    font-weight: bold;
+}
+
+.log small {
+    color: #94a3b8;
+    font-size: 0.85em;
+}
+
+.log code {
+    background: #334155;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    word-wrap: break-word;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat span {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.stat label {
+    color: #94a3b8;
+    font-size: 0.9em;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1e293b;
+    color: #94a3b8;
+    border-top: 1px solid #475569;
+}
+
+@media (max-width: 768px) {
+    #stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        max-width: 300px;
+    }
+}
