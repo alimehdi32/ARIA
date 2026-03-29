@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> ARIA Live Dashboard</h1>
+        <p>Real-time monitoring of AI agent orchestration and invoice processing.</p>
+    </header>
+
+    <main>
+        <section id="logs-section">
+            <h2>Recent Logs</h2>
+            <div id="logs-container">
+                <!-- Logs will be populated here -->
+            </div>
+        </section>
+
+        <section id="stats-section">
+            <h2>Quick Stats</h2>
+            <div id="stats">
+                <div class="stat">
+                    <span id="total-logs">0</span>
+                    <label>Total Logs</label>
+                </div>
+                <div class="stat">
+                    <span id="success-count">0</span>
+                    <label>Successes</label>
+                </div>
+                <div class="stat">
+                    <span id="failure-count">0</span>
+                    <label>Failures</label>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>ARIA System - Built with FastAPI and SQLite</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

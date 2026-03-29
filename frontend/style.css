@@ -1,0 +1,135 @@
+/* ARIA Dashboard Styles */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: #111111;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ffffff;
+}
+
+header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 2.5em;
+}
+
+header p {
+    margin: 10px 0 0;
+    color: #cccccc;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #ffffff;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 10px;
+}
+
+#logs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log {
+    background: #111111;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #3b82f6;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s;
+}
+
+.log:hover {
+    transform: translateY(-2px);
+}
+
+.log.START { border-left-color: #3b82f6; }
+.log.SUCCESS { border-left-color: #22c55e; }
+.log.FAILURE { border-left-color: #ef4444; }
+.log.RECOVERY_SUCCESS { border-left-color: #eab308; }
+.log.VERIFICATION { border-left-color: #a855f7; }
+
+.log strong {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.log small {
+    color: #cccccc;
+    font-size: 0.85em;
+}
+
+.log code {
+    background: #333333;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    word-wrap: break-word;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat {
+    background: #111111;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.stat span {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.stat label {
+    color: #cccccc;
+    font-size: 0.9em;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111111;
+    color: #cccccc;
+    border-top: 1px solid #333333;
+}
+
+@media (max-width: 768px) {
+    #stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        max-width: 300px;
+    }
+}
