@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ARIA Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            color: #38bdf8;
+        }
+        .log {
+            background: #1e293b;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .START { border-left: 5px solid #3b82f6; }
+        .SUCCESS { border-left: 5px solid #22c55e; }
+        .FAILURE { border-left: 5px solid #ef4444; }
+        .RECOVERY_SUCCESS { border-left: 5px solid #eab308; }
+        .VERIFICATION { border-left: 5px solid #a855f7; }
+    </style>
+</head>
+<body>
+
+<h1>🚀 ARIA Live Dashboard</h1>
+<div id="logs"></div>
+
+<script>
+async function fetchLogs() {
+    const res = await fetch("http://127.0.0.1:8000/logs");
+    const data = await res.json();
+
+    const container = document.getElementById("logs");
+    container.innerHTML = "";
+
+    data.logs.forEach(log => {
+        const div = document.createElement("div");
+        div.className = "log " + log.event;
+
+        div.innerHTML = `
+            <strong>${log.agent}</strong> - ${log.event}<br/>
+            <small>${log.timestamp}</small><br/>
+            <code>${log.payload}</code>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+setInterval(fetchLogs, 2000);
+fetchLogs();
+</script>
+
+</body>
+</html>
