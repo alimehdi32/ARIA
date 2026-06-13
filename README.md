@@ -1,161 +1,417 @@
-# ARIA: AI Reliable Agent Infrastructure
+# 🚀 ZYAI – Reliable Agentic AI Framework
 
-## Overview
+ZYAI is a resilient AI orchestration framework designed to improve the reliability, observability, and fault tolerance of AI-powered workflows.
 
-ARIA (AI Reliable Agent Infrastructure) is an innovative AI agent orchestration system designed for resilient invoice processing workflows. Built as an MVP for the GenAI Hackathon, ARIA demonstrates advanced concepts in AI reliability, self-healing systems, and real-time monitoring. The system uses modular agents, retry policies, confidence scoring, and audit logging to ensure robust execution even in the face of failures.
+Unlike traditional AI applications that fail when encountering incomplete or invalid inputs, ZYAI introduces self-healing execution pipelines, confidence estimation, verification layers, and workflow monitoring to ensure reliable AI system behavior.
 
-### Key Features
-- **Modular Agent Architecture**: Extensible base agents for different tasks (e.g., invoice processing, verification).
-- **Self-Healing Orchestration**: Automatic failure detection, classification, and recovery (retries, data fixes).
-- **Confidence Scoring**: Evaluates output quality to flag low-confidence results for escalation.
-- **Real-Time Audit Logging**: SQLite-based logging with a live web dashboard for monitoring.
-- **Web Dashboard**: Interactive frontend for visualizing agent activities and system health.
-- **REST API**: FastAPI-based endpoints for log retrieval and potential future integrations.
+---
 
-### Hackathon Context
-This MVP showcases GenAI principles by simulating intelligent, adaptive AI agents in a business workflow. It addresses real-world challenges like error handling in AI systems, making it suitable for enterprise applications such as automated document processing, financial workflows, or any scenario requiring reliable AI orchestration.
+# ✨ Features
 
-## Project Structure
+## 🤖 Agent-Based Architecture
 
+Modular AI agents designed for specialized workflow execution.
+
+* Invoice Processing Agent
+* Verification Agent
+* Confidence Evaluation Engine
+* Retry & Recovery Engine
+
+---
+
+## 🔄 Self-Healing Workflows
+
+ZYAI automatically detects workflow failures and applies recovery strategies.
+
+Example:
+
+```text
+Missing PO Number
+        ↓
+Failure Detection
+        ↓
+Automatic Data Repair
+        ↓
+Workflow Re-Execution
+        ↓
+Successful Completion
 ```
-ARIA/
-├── main.py                 # Entry point for console demo
-├── requirements.txt        # Python dependencies
-├── audit/
-│   └── logger.py          # Audit logging to SQLite database
-├── core/
-│   ├── base_agent.py      # Base agent class with confidence calculation
-│   ├── confidence.py      # Confidence scoring logic
-│   ├── orchestrator/
-│   │   └── main.py        # Main orchestration logic (execute, retry, verify)
-│   └── retry_policy.py    # Failure classification and recovery strategies
+
+---
+
+## 🛡 Failure Classification
+
+The framework classifies failures into categories:
+
+* DATA_ERROR
+* TRANSIENT_ERROR
+* UNKNOWN_ERROR
+
+Each category follows a dedicated recovery strategy.
+
+---
+
+## 📊 Confidence Scoring
+
+ZYAI evaluates output quality using a confidence estimation engine.
+
+Applications:
+
+* Human-in-the-loop systems
+* Escalation workflows
+* Reliability assessment
+* Output validation
+
+---
+
+## ✅ Verification Layer
+
+Outputs pass through a verification stage before final delivery.
+
+Benefits:
+
+* Improved reliability
+* Reduced invalid responses
+* Better workflow trustworthiness
+
+---
+
+## 📜 Audit Logging
+
+Every workflow event is recorded.
+
+Examples:
+
+* START
+* FAILURE
+* RECOVERY_SUCCESS
+* SUCCESS
+* VERIFICATION
+
+---
+
+## 📈 Monitoring Dashboard
+
+Real-time dashboard built with:
+
+* HTML
+* CSS
+* JavaScript
+* FastAPI
+
+Provides:
+
+* Workflow visibility
+* Event monitoring
+* System observability
+* Audit history
+
+---
+
+# 🏗 System Architecture
+
+```text
+                 User Input
+                      │
+                      ▼
+               Invoice Agent
+                      │
+              Failure?
+             /       \
+           Yes        No
+           │           │
+           ▼           ▼
+      Retry Engine   Success
+           │
+      Auto Recovery
+           │
+           ▼
+      Verification
+           │
+           ▼
+   Confidence Scoring
+           │
+           ▼
+      Audit Logging
+           │
+           ▼
+        Dashboard
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+ZYAI/
+│
+├── main.py
+├── requirements.txt
+│
 ├── agents/
 │   └── process_orchestration/
-│       ├── invoice_agent.py    # Invoice processing agent
-│       └── verifier_agent.py   # Result verification agent
+│       ├── invoice_agent.py
+│       └── verifier_agent.py
+│
+├── audit/
+│   └── logger.py
+│
+├── core/
+│   ├── base_agent.py
+│   ├── confidence.py
+│   ├── retry_policy.py
+│   │
+│   └── orchestrator/
+│       └── main.py
+│
 ├── api/
-│   ├── server.py          # FastAPI server with CORS
-│   └── index.html         # Basic web dashboard (legacy)
-└── frontend/              # Enhanced web dashboard
-    ├── index.html
-    ├── style.css
-    └── script.js
+│   ├── __init__.py
+│   └── server.py
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+└── audit.db
 ```
 
-## Installation
+---
 
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
+# ⚙️ Installation
 
-### Setup Steps
-1. Clone or navigate to the project directory:
-   ```
-   cd P:\ET GenAI\ARIA
-   ```
+## Clone Repository
 
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+```bash
+git clone https://github.com/your-username/ZYAI.git
+cd ZYAI
+```
 
-3. (Optional) If using a virtual environment:
-   ```
-   python -m venv venv
-   venv\Scripts\activate  # On Windows
-   pip install -r requirements.txt
-   ```
+## Create Virtual Environment
 
-## Usage
+```bash
+python -m venv venv
+```
 
-### Running the Console Demo
-The demo showcases the full orchestration workflow with intentional failures to demonstrate self-healing.
+### Windows
 
-1. Run the demo:
-   ```
-   python main.py
-   ```
+```bash
+venv\Scripts\activate
+```
 
-2. Expected Output:
-   - System initialization
-   - Invoice data processing
-   - Failure handling and recovery
-   - Verification and final results
-   - Audit logs printed to console
+### Linux / macOS
 
-### Running the Web Dashboard
-For real-time monitoring of agent activities:
+```bash
+source venv/bin/activate
+```
 
-1. Start the FastAPI server:
-   ```
-   uvicorn api.server:app --reload
-   ```
-   - Server runs on `http://127.0.0.1:8000`
+## Install Dependencies
 
-2. Open the enhanced dashboard:
-   - Navigate to `frontend/index.html` and open in a browser
-   - Or visit `http://127.0.0.1:8000` (serves basic dashboard)
+```bash
+pip install -r requirements.txt
+```
 
-3. Generate activity:
-   - In another terminal, run `python main.py` to populate logs
+---
 
-### API Endpoints
+# 🚀 Running ZYAI
 
-- `GET /logs`: Retrieve recent audit logs (JSON format)
-  - Response: `{"logs": [{"id": 1, "timestamp": "...", "agent": "...", "event": "...", "payload": "..."}]}`
-  - Used by the web dashboard for real-time updates
+## Console Demo
 
-## Architecture Details
+```bash
+python main.py
+```
 
-### Core Components
-- **Orchestrator**: Central controller that executes agents, handles exceptions, and coordinates retries/verification.
-- **Agents**: Implement `BaseAgent` with a `think()` method. Outputs include confidence scores.
-- **Retry Engine**: Classifies failures (transient, data error) and applies fixes (e.g., auto-generating missing PO numbers).
-- **Audit Logger**: Logs all events to SQLite (`audit.db`) for traceability.
-- **Confidence Calculator**: Simple heuristic-based scoring (length, error absence).
+Example Input:
 
-### Workflow Example
-1. Orchestrator receives invoice data
-2. Executes InvoiceAgent → Fails due to missing PO
-3. RetryEngine classifies as "DATA_ERROR" → Fixes data
-4. Re-executes → Succeeds
-5. VerifierAgent validates output
-6. Logs everything; escalates if confidence < 60%
+```text
+Vendor Name: Amazon
+Amount: 15000
+PO Number:
+```
 
-### Technologies Used
-- **Backend**: Python, FastAPI, Uvicorn, SQLite
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Libraries**: sqlite3 (built-in), fastapi, uvicorn, flask-cors
+Example Output:
 
-## Development
+```text
+Failure Detected
+Auto-Recovery Triggered
+Invoice Successfully Processed
+Confidence Score: 0.88
+```
 
-### Extending the System
-- Add new agents by inheriting `BaseAgent` and implementing `think()`.
-- Enhance retry policies in `retry_policy.py`.
-- Modify confidence logic in `confidence.py`.
-- Add API endpoints in `api/server.py`.
+---
 
-### Testing
-- Run the demo: `python main.py`
-- Check logs in `audit.db` or via API
-- Test dashboard by running server and opening frontend
+## Start API Server
 
-### Known Limitations (MVP Scope)
-- Simple confidence scoring (can be upgraded to ML-based)
-- Basic verification (expand to more complex rules)
-- No authentication or security features
-- SQLite for demo; scale to PostgreSQL for production
+```bash
+uvicorn api.server:app --reload
+```
 
-## Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Make changes and test
-4. Submit a pull request
+Server:
 
-## Hackathon Submission Notes
-- **Innovation**: Demonstrates AI resilience and orchestration for business workflows.
-- **Scalability**: Modular design allows easy extension to other domains.
-- **Real-World Impact**: Addresses AI reliability issues in enterprise automation.
-- **Future Enhancements**: Integrate with LLMs for smarter agents, add user authentication, deploy to cloud.
+```text
+http://127.0.0.1:8000
+```
 
-For questions or feedback, contact the development team.
+Swagger Docs:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+---
+
+## Launch Dashboard
+
+Open:
+
+```text
+frontend/index.html
+```
+
+The dashboard displays:
+
+* System Events
+* Success Rate
+* Failures
+* Confidence Metrics
+* Workflow Logs
+
+---
+
+# 📌 Example Workflow
+
+Input:
+
+```json
+{
+  "vendor": "Amazon",
+  "amount": 15000,
+  "po_number": null
+}
+```
+
+Execution:
+
+```text
+Invoice Agent
+      ↓
+Failure Detected
+      ↓
+Retry Engine
+      ↓
+PO Auto Generated
+      ↓
+Verification
+      ↓
+Confidence Scoring
+      ↓
+Success
+```
+
+Output:
+
+```json
+{
+  "status": "SUCCESS",
+  "confidence": 0.88
+}
+```
+
+---
+
+# 🧠 Technology Stack
+
+## Backend
+
+* Python
+* FastAPI
+* SQLite
+
+## AI & ML
+
+* Scikit-Learn
+* Confidence Scoring Engine
+* Agent-Based Workflow Execution
+
+## Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+## Infrastructure
+
+* REST APIs
+* Audit Logging
+* Workflow Monitoring
+
+---
+
+# 📋 Current Capabilities
+
+✅ Agent Orchestration
+
+✅ Workflow Monitoring
+
+✅ Self-Healing Retries
+
+✅ Confidence Scoring
+
+✅ Failure Classification
+
+✅ Verification Pipeline
+
+✅ FastAPI Dashboard
+
+✅ Audit Logging
+
+---
+
+# 🔮 Roadmap
+
+## Agentic RAG
+
+* ChromaDB Integration
+* Embedding-Based Retrieval
+* Semantic Search
+* Context Grounding
+
+## Multi-Agent Systems
+
+* Retrieval Agent
+* Planning Agent
+* Reasoning Agent
+* Evaluation Agent
+
+## Enterprise Features
+
+* Authentication
+* PostgreSQL Support
+* Cloud Deployment
+* Workflow Analytics
+* RBAC
+
+---
+
+# 🎯 Vision
+
+Most AI projects focus on generating outputs.
+
+ZYAI focuses on ensuring those outputs are:
+
+* Reliable
+* Recoverable
+* Verifiable
+* Observable
+
+The long-term vision is to evolve ZYAI into a complete Agentic AI platform capable of orchestrating retrieval, reasoning, verification, and self-healing workflows at scale.
+
+---
+
+# 👨‍💻 Author
+
+**Afraaz Ul Haque**
+
+GitHub: https://github.com/AfraazUlHaque
+
+LinkedIn: https://www.linkedin.com/in/afraazul-haque-5b668a325
